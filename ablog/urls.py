@@ -20,4 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('theblog.urls')),
+    path('members/', include('django.contrib.auth.urls')), # django.contrib.auth.urls omogucava da django sam daje url za login/register
+    path('members/', include('members.urls')), # jos jedan members/ path jer ako ne posoji neki url u onom package, da ne bude error
 ]

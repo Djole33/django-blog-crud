@@ -22,9 +22,24 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
               <a class="nav-link" href="{% url 'add-post' %}">Add Post</a>
-            </li>
+                </li>
+                <li class="nav-item">
+                  <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">logout</button>
+                  </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+            {% endif %}
           </ul>
         </div>
     </nav>
