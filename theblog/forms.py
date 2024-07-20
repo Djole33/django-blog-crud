@@ -15,7 +15,11 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}), #daje bootstrap styling formi za pravljenje postova
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
+            # 'author': forms.Select(attrs={'class': 'form-control'}),
+            'author': forms.TextInput(attrs={'class': 'form-control', 
+                                             'value': '', 
+                                             'id': 'elder', # id kolona je potrebna javascriptu da bi identifikovao koji user je loginovan
+                                             'type': 'hidden'}), 
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'}),
             'body': forms.Textarea(attrs={'class': 'form-control'}),
         }
