@@ -13,7 +13,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'title_tag', 'author', 'category', 'body')
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}), #daje bootstrap styling formi za pravljenje postova
+            'title': forms.TextInput(attrs={'class': 'form-control'}), # daje bootstrap styling formi za pravljenje postova
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
             # 'author': forms.Select(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control', 
