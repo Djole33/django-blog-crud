@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime, date
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 
@@ -18,10 +19,12 @@ class Post(models.Model):
     title = models.CharField(max_length=255) 
     title_tag = models.CharField(max_length=255)
     author = models.ForeignKey(User, on_delete=models.CASCADE) #ovo znaci kada se obrise user, brisu se svi njegovi blogovi
-    body = models.TextField()
+    body = RichTextField(blank=True, null=True)
+    # body = models.TextField()
     post_date = models.DateField(auto_now_add=True) #auto_now_add - datum se automatski dodaje da ne bi user pisao kad je napravio post
     category = models.CharField(max_length=255, default='coding')
     likes = models.ManyToManyField(User, related_name="blog_posts") # related_name je kao ForeignKey
+    snippets = models.CharField(max_length=255)
 
     def total_likes(self):
         return self.likes.count()
@@ -31,4 +34,3 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
-    
