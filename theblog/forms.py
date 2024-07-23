@@ -11,7 +11,7 @@ for category in choices:
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'title_tag', 'author', 'category', 'body', 'snippets')
+        fields = ('title', 'title_tag', 'author', 'category', 'body', 'snippets', 'header_image')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}), # daje bootstrap styling formi za pravljenje postova
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),

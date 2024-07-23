@@ -17,9 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('theblog.urls')),
     path('members/', include('django.contrib.auth.urls')), # django.contrib.auth.urls omogucava da django sam daje url za login/register
     path('members/', include('members.urls')), # jos jedan members/ path jer ako ne posoji neki url u onom package, da ne bude error
-]
+
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
