@@ -56,6 +56,26 @@
 
 </form>
 
+<hr>
+
+<br /> <br />
+
+<h2>Comments</h2>
+<br />
+
+{% if not post.comments.all %} <!-- comments dobijam iz onog related_name iz models.py-a -->
+    No Coments Yet...<a href="#">
+    Add One</a>
+{% else %}
+    {% for comment in post.comments.all %}
+	<strong>{{ comment.name }} -
+	{{ comment.date_added }}</strong>
+	<br />
+	{{ comment.body }}
+	<br /> <br />
+    {% endfor %}
+{% endif %}
+
 <br /> <br />
 
 <div class="card mb-3">

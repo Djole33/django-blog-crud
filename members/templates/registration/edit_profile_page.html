@@ -7,7 +7,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    {% if user.id == profile.user.id %}
+    {% if user.id == profile.user.id %} <!-- proverava da li je user validan da edituje post(da li admin zeli da edituje admina) -->
 
         <h1>Edit Profile</h1>
 

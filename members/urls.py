@@ -8,4 +8,5 @@ urlpatterns = [
     path('password-success', password_success, name="password-success"),
     path('<int:pk>/profile/', ShowProfilePageView.as_view(), name="show-profile-page"),
     path('<int:pk>/edit-profile-page/', EditProfilePageView.as_view(), name="edit-profile-page"),
+    path('create-profile-page/', CreateProfilePageView.as_view(), name="create-profile-page"),
 ]

@@ -56,8 +56,12 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{% url 'edit-profile' %}">Edit Settings</a>
+                    {% if user.profile.id %}
                     <a class="dropdown-item" href="{% url 'edit-profile-page' user.profile.id %}">Edit Profile Page</a>
                     <a class="dropdown-item" href="{% url 'show-profile-page' user.profile.id %}">Show Profile Page</a>
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'create-profile-page' %}">Create Profile Page</a>
+                    {% endif %}
                   </div>
                 </li>
                 <li class="nav-item">
