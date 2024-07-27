@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView #list view pretrazuje databazu i daje listu postova, a detail daje 1 post
-from .models import Post, Category
-from .forms import PostForm, EditForm
+from .models import Post, Category, Comment
+from .forms import PostForm, EditForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
@@ -63,6 +63,18 @@ class AddPostView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'add_post.html'
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'add_comment.html'
+    
+    def get_success_url(self):
+	    return reverse_lazy('article-detail', kwargs={'pk': self.kwargs['pk']})
+                     
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
 
 class AddCategoryView(CreateView):
     model = Category

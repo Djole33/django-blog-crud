@@ -50,26 +50,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'add-category' %}">Add Category</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Profile
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{% url 'edit-profile' %}">Edit Settings</a>
-                    {% if user.profile.id %}
-                    <a class="dropdown-item" href="{% url 'edit-profile-page' user.profile.id %}">Edit Profile Page</a>
-                    <a class="dropdown-item" href="{% url 'show-profile-page' user.profile.id %}">Show Profile Page</a>
-                    {% else %}
-                    <a class="dropdown-item" href="{% url 'create-profile-page' %}">Create Profile Page</a>
-                    {% endif %}
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                  </form>
-                </li>
             {% else %}
                 <li class="nav-item">
               <a class="nav-link" href="{% url 'register' %}">Register</a>
@@ -79,6 +59,29 @@
                 </li>
             {% endif %}
           </ul>
+      {% if user.is_authenticated %}
+        <ul>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ user.first_name }}
+              {{ user.last_name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'edit-profile' %}">Edit Settings</a>
+              {% if user.profile.id %}
+              <a class="dropdown-item" href="{% url 'edit-profile-page' user.profile.id %}">Edit Profile Page</a>
+              <a class="dropdown-item" href="{% url 'show-profile-page' user.profile.id %}">Show Profile Page</a>
+              {% else %}
+              <a class="dropdown-item" href="{% url 'create-profile-page' %}">Create Profile Page</a>
+              {% endif %}
+            </div>
+          </li>
+        </ul>
+      {% endif %}
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+          </form>
         </div>
     </nav>
 
